@@ -176,7 +176,25 @@ function markasdone(id){
 }
 
 function addtotodo(){
-  var inputValue = document.getElementById("todoinput").value;
+  const inputValue = document.getElementById("todoinput").value.trim();
+            if (inputValue === '') {
+                alert("Please enter a task!");
+                return;
+            }
+
+            const li = document.createElement("li");
+            li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "bg-light");
+            li.textContent = inputValue;
+
+            const removeIcon = document.createElement("ion-icon");
+            removeIcon.setAttribute("name", "close-circle-outline");
+            removeIcon.style.cursor = "pointer";
+            removeIcon.classList.add("text-danger");
+            removeIcon.addEventListener("click", () => li.remove());
+
+            li.appendChild(removeIcon);
+            document.getElementById("myUL").appendChild(li);
+            document.getElementById("todoinput").value = '';
   fetch(`/addtodo/${inputValue}`)
         .then(response => response.json())
         .then(result => {
@@ -186,11 +204,7 @@ function addtotodo(){
             li.appendChild(t);
   if (inputValue === '') {
     alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
   }
-  document.getElementById("todoinput").value = "";
-  li.appendChild(span);
       })
 }
 
