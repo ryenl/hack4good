@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 
 # Distinctiveness and Complexity
 An application like this was not covered in the course as such I decided to go with this idea as I myself currently work in a manpower office. This is not a social media or e commerce website. I also have multiple models inside: users (Inherited), leaves, projects and to do items. This fulfills the at least one model of the requirement. All data is stored using django and javascript is utilised heavily on the front-end especially for the calendar section, searching through employees and projects, apply leave and approving leave as well. Hence, I believe it fulfills this critera.Lastly, as demonstrated in the video the entier webpage is mobile responsive by using developer tools and switching to an iphoneXR display.
@@ -29,6 +28,3 @@ Ideally this application would be used by a team of people. To use it simply use
 
 # Any other additional information the staff should know about your project.
 NIL
-=======
-# hack4good
->>>>>>> 2ab515775aaa58faba414bca8839c4b7f8ea4b93
