@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+Final/finalproject/HR/migrations/0002_employeestatus_user.py{% block body %}
+
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+
+<table id="myTable">
+  <tr class="header" style="height: 10vh;">
+    <th><div></div></th>
+    <th><div>Name</div></th>
+    <th><div>Email</div></th>
+    <th><div>Join Date</div></th>
+    <th><div>Status</div></th>
+    <th><div>Role</div></th>
+    <th><div></div></th>
+    
+  </tr>
+  {% for employee in employees %}
+                <tr id ="employee_data_{{employee.id}}" style="height: 10vh;">
+                    <td><img src = "{{employee.profileimage}}" class="avatar"></td>
+                    <td>{{employee.user.username}}</td>
+                    <td>{{employee.user.email}}</td>
+                    <td>{{employee.user.date_joined}}</td>
+                    <td>{% if employee.user.is_active == True %} Online
+                        {% else %} Offline
+                        {% endif %}
+                    </td>
+                    <td>{{employee.role}}</td>
+                    <td class="text-right">
+                        <a href="mailto:{{employee.user.email}}"><button class="btn-primary">Contact</button></a>
+                        {% if isboss == True %}
+                        <button class="btn-danger" id ="deletebutton_{{employee.id}}" onclick="remove({{employee.id}})">Delete</button>
+                        {% endif %}	
+                    </td>
+                </tr>
+    {% endfor %}
+            </table>
+
+{% endblock %}
+
+<script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+    
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>

@@ -1,0 +1,123 @@
+
+{% extends "layout.html" %}
+{% block script%}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    calendar();
+  });
+</script>
+{% endblock %}
+
+{% block body %}
+
+<div class ="date_header" id ="date_header">
+    <ion-icon name="chevron-up-outline" onclick="changemonth(-1)"></ion-icon>
+    <div id ="currentdate">       
+    </div>
+   <ion-icon name="chevron-down-outline" onclick="changemonth(+1)"></ion-icon>
+    </div>
+<table class ="calendar" id ="calendar">
+    <tr id ="days" class="days">
+        <th class = "day-title">Sunday</th>
+        <th class = "day-title">Monday</th>
+        <th class = "day-title">Tuesday</th>
+        <th class = "day-title">Wednesday</th>
+        <th class = "day-title">Thursday</th>
+        <th class = "day-title">Friday</th>
+        <th class = "day-title">Saturday</th>
+    </tr>
+    <tr class = "days" id = "week1">
+        
+    </tr>
+    <tr id = "week2"></tr>
+
+    <tr id = "week3"> 
+
+    </tr>
+    <tr id = "week4">
+
+    </tr>
+    <tr id = "week5">
+
+    </tr>
+    <tr id = "week6">
+
+    </tr>
+</table>
+
+<div class = "date_header">
+    <button type="button" class="btn btn-info btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">
+        Add Task
+      </button>
+</div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Project</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action = "addproject" method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input autofocus class="form-control" type="text" name="title" placeholder="title">
+                </div>
+                <div class="form-group">
+                    <input autofocus class="form-control" type="text" name="description" placeholder="description">
+                </div>
+                <div class="form-group">
+                    <input autofocus class="form-control" type="date" name="duedate" placeholder="duedate">
+                </div>
+                <div class="form-group">
+                    <select name="employees" name = "employees" multiple style="width: 100%;">
+                        {% for employee in employees %}
+                        <option value="{{employee.id}}">{{employee.username}}</option>
+                        {% endfor %}
+                      </select>
+  </select>
+                </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
+<div class ="upcoming-tasks-calendar">
+    <div class = "task_header"><h2>Incomplete Tasks:</h2></div>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for task">
+    <table id="myTable">
+        <tr class="header">
+            <th></th>
+            <th scope="col">Title</th>
+            <th scope="col">description</th>
+            <th scope="col">Due Date</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+        </tr>
+        {% for task in tasks %}
+          <tr id = "task_{{task.id}}">
+            <td></td>
+            <td>{{task.title}}</td>
+            <td>{{task.description}}</td>
+            <td>{{task.duedate}}</td>
+            <td>{{task.status}}</td>
+            <td>
+                <button onclick = "markasdone({{task.id}})"class="btn-primary">Mark as Done</button>	
+            </td>          
+          </tr>
+          {% endfor %}
+</div>
+{% endblock %}
+
+
