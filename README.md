@@ -1,11 +1,11 @@
 # How to run this application.
 The following needs to be done before running the application:
-pip install pillow
-pip install schedule
-pip install python-dateutil
-pip install django
+1. pip install pillow
+2. pip install schedule
+3. pip install python-dateutil
+4. pip install django
 
-After which simply run the server locally using python mangage.py
+After which run the server locally by typing **python mangage.py** in the terminal.
 
 
 # Introduction
