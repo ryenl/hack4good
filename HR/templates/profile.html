@@ -1,8 +1,122 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<div class="container my-5">
-    <h1>Welcome to Your Profile Page</h1>
-    <p>This is a placeholder for the profile page.</p>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(to bottom, #f3f4f6, #e2e8f0);
+        color: #2c3e50;
+    }
+
+    .profile-container {
+        max-width: 900px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .profile-header img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid #3498db;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #f0f4f8;
+    }
+
+    .profile-header h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-top: 15px;
+    }
+
+    .profile-header h4 {
+        font-size: 1.2rem;
+        color: #7f8c8d;
+        margin-top: 5px;
+    }
+
+    .profile-details {
+        margin-top: 20px;
+        padding: 15px 30px;
+        background: #f9fafb;
+        border-radius: 10px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .profile-details .detail {
+        margin-bottom: 15px;
+        font-size: 1rem;
+        color: #2c3e50;
+    }
+
+    .profile-details .detail span {
+        font-weight: bold;
+        color: #3498db;
+    }
+
+    .btn-edit-profile {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .btn-edit-profile a {
+        padding: 10px 25px;
+        font-size: 1rem;
+        color: #ffffff;
+        background: #3498db;
+        border-radius: 25px;
+        text-decoration: none;
+        transition: background 0.3s ease;
+    }
+
+    .btn-edit-profile a:hover {
+        background: #2980b9;
+    }
+
+    @media (max-width: 768px) {
+        .profile-header h1 {
+            font-size: 2rem;
+        }
+
+        .profile-header h4 {
+            font-size: 1rem;
+        }
+
+        .profile-details .detail {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+
+<div class="profile-container">
+    <div class="profile-header">
+        <img src="{{ employee_status.profileimage.url }}" alt="Profile Photo">
+        <h1>{{ employee_status.user.username }}</h1>
+        <h4>{{ employee_status.role }}</h4>
+    </div>
+
+    <div class="profile-details">
+        <p class="detail"><span>Email:</span> {{ employee_status.user.email }}</p>
+        <p class="detail"><span>Join Date:</span> {{ employee_status.user.date_joined }}</p>
+        <p class="detail"><span>Leaves Remaining:</span> {{ employee_status.leave_number }}</p>
+        <p class="detail"><span>Status:</span> {% if employee_status.user.is_active %} Online {% else %} Offline {% endif %}</p>
+    </div>
+
+    <div class="btn-edit-profile">
+        <a href="#">Edit Profile</a>
+    </div>
 </div>
 {% endblock %}
