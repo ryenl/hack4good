@@ -13,6 +13,7 @@ The problem statement we have selected is by the Singapore book council: Develop
 
 # In each file
 File Overview
+
 **1. Models (models.py)**
 This file contains the additional models for the application:
 
@@ -41,6 +42,7 @@ Track leaves.
 Apply for new leaves (adjusting the leave count automatically).
 Approve or reject leave requests.
 Remove outdated or unapproved leave requests.
+
 **3. Frontend Scripts (HR.js)**
 This JavaScript file powers the dynamic aspects of the app:
 
@@ -49,7 +51,8 @@ Generates a calendar dynamically with correct dates and weekday alignments.
 Includes the changeMonth function to update calendar views when switching between months.
 Form Validations:
 Scripts like leave.HTML ensure date inputs are valid, preventing past or out-of-year selections.
-4. URL Configurations (urls.py)
+
+**4. URL Configurations (urls.py)**
 Contains all the necessary paths for routing, including:
 
 Display routes for pages like home and employees.
@@ -57,8 +60,10 @@ Action routes like mark_as_done, add_todo, remove_todo, approve, and remove. The
 
 **5. Stylesheets (HR.css / HR.scss)**
 These files contain custom CSS that enhances the visual design of the app and makes the interface user-friendly.
+
 **6. Media Storage**
 media/ and media/images/ directories store user-uploaded profile pictures.
+
 **7. Templates (HTML Files)**
 layout.html:
 A base template with navigation bars and linked JavaScript files.
