@@ -13,7 +13,7 @@ The problem statement we have selected is by the Singapore book council: Develop
 
 # In each file
 File Overview
-1. Models (models.py)
+**1. Models (models.py)**
 This file contains the additional models for the application:
 
 leaves: Tracks leave dates, statuses, and the user applying for the leave.
@@ -22,7 +22,7 @@ todoitems: A simple model to store personal to-do list items for individual prod
 tasks: Tracks project details, including title, due date, status, and stakeholders.
 All models reference Django's built-in User model to link data to specific users.
 
-2. Views (views.py)
+**2. Views (views.py)**
 Key functions in the views.py file:
 
 Authentication:
@@ -41,7 +41,7 @@ Track leaves.
 Apply for new leaves (adjusting the leave count automatically).
 Approve or reject leave requests.
 Remove outdated or unapproved leave requests.
-3. Frontend Scripts (HR.js)
+**3. Frontend Scripts (HR.js)**
 This JavaScript file powers the dynamic aspects of the app:
 
 Calendar Functionality:
@@ -54,11 +54,12 @@ Contains all the necessary paths for routing, including:
 
 Display routes for pages like home and employees.
 Action routes like mark_as_done, add_todo, remove_todo, approve, and remove. These routes utilize object IDs to modify specific entries in the database.
-5. Stylesheets (HR.css / HR.scss)
+
+**5. Stylesheets (HR.css / HR.scss)**
 These files contain custom CSS that enhances the visual design of the app and makes the interface user-friendly.
-6. Media Storage
+**6. Media Storage**
 media/ and media/images/ directories store user-uploaded profile pictures.
-7. Templates (HTML Files)
+**7. Templates (HTML Files)**
 layout.html:
 A base template with navigation bars and linked JavaScript files.
 employees.html:
