@@ -101,6 +101,7 @@
             <th></th>
             <th scope="col">Title</th>
             <th scope="col">description</th>
+            <th scope="col">Assigned to</th>
             <th scope="col">Due Date</th>
             <th scope="col">Status</th>
             <th scope="col"></th>
@@ -110,6 +111,11 @@
             <td></td>
             <td>{{task.title}}</td>
             <td>{{task.description}}</td>
+            <td>
+              {% for user in task.users.all %}
+                {{ user.username }}{% if not forloop.last %}, {% endif %}
+              {% endfor %}
+            </td>
             <td>{{task.duedate}}</td>
             <td>{{task.status}}</td>
             <td>

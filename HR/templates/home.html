@@ -98,12 +98,21 @@
     .list-group-item {
         border: 1px solid #EAECEE;
     }
+
+    /* Add scrollable container to the To-Do List */
+    #myUL {
+        max-height: 300px; /* Set max height for the list */
+        overflow-y: auto; /* Add vertical scroll if list exceeds max height */
+        border: 1px solid #EAECEE; /* Optional: Add a border for clarity */
+        padding: 10px; /* Add some padding for better aesthetics */
+        margin-top: 10px; /* Add space above the list */
+    }
 </style>
 
 <div class="container my-5">
     <!-- Header Section -->
-    <div class="text-center mb-5">
-        <h1 class="header-title">Welcome to Your Digital PA System</h1>
+    <div class="text-center mt-5">
+        <h1 class="header-title mt-5">Welcome to Your Digital PA System</h1>
         <p class="sub-title">Streamline your workflow with smart scheduling, task management, and reminders.</p>
     </div>
 
@@ -182,7 +191,7 @@
             <h3 class="text-secondary fw-bold">To-Do List</h3>
             <div class="input-group mt-3">
                 <input type="text" id="todoinput" class="form-control" placeholder="Add a new task...">
-                <button class="btn btn-primary" type="button" onclick="addtotodo()">Add</button>
+                <button class="btn btn-primary" type="button" onclick="addToDo()">Add</button>
             </div>
             <ul id="myUL" class="list-group mt-3">
                 {% for todo in todos %}
