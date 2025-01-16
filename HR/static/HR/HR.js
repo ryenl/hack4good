@@ -175,38 +175,57 @@ function markasdone(id){
       })
 }
 
-function addtotodo(){
+/*function addtotodo() {
   const inputValue = document.getElementById("todoinput").value.trim();
-            if (inputValue === '') {
-                alert("Please enter a task!");
-                return;
-            }
 
-            const li = document.createElement("li");
-            li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "bg-light");
-            li.textContent = inputValue;
-
-            const removeIcon = document.createElement("ion-icon");
-            removeIcon.setAttribute("name", "close-circle-outline");
-            removeIcon.style.cursor = "pointer";
-            removeIcon.classList.add("text-danger");
-            removeIcon.addEventListener("click", () => li.remove());
-
-            li.appendChild(removeIcon);
-            document.getElementById("myUL").appendChild(li);
-            document.getElementById("todoinput").value = '';
-  fetch(`/addtodo/${inputValue}`)
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-            var li = document.createElement("li");
-            var t = document.createTextNode(inputValue);
-            li.appendChild(t);
+  // Validate input
   if (inputValue === '') {
-    alert("You must write something!");
+      alert("Please enter a task!");
+      return;
   }
+
+  // Send the task to the backend
+  fetch(`/addtodo/${inputValue}`)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error("Failed to save the task.");
+          }
+          return response.json();
       })
+      .then(result => {
+          console.log("Task saved:", result);
+
+          // Create a new list item
+          const li = document.createElement("li");
+          li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "bg-light");
+          li.textContent = inputValue;
+
+          // Add remove icon
+          const removeIcon = document.createElement("ion-icon");
+          removeIcon.setAttribute("name", "close-circle-outline");
+          removeIcon.style.cursor = "pointer";
+          removeIcon.classList.add("text-danger");
+
+          // Attach removal functionality
+          removeIcon.addEventListener("click", () => li.remove());
+
+          li.appendChild(removeIcon);
+          document.getElementById("myUL").appendChild(li);
+
+          // Scroll to the bottom of the list
+          const ul = document.getElementById("myUL");
+          ul.scrollTop = ul.scrollHeight;
+
+          // Clear the input field
+          document.getElementById("todoinput").value = '';
+      })
+      .catch(error => {
+          console.error("Error:", error);
+          alert("Failed to add the task. Please try again.");
+      });
 }
+      */
+
 
 function removetodo(id){
   todoitem = document.getElementById(`todo_${id}`);

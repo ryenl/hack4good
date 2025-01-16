@@ -3,28 +3,58 @@
 {% block script %}
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        function addToDo() {
+        function addtotodo() {
             const inputValue = document.getElementById("todoinput").value.trim();
+
+            // Validate input
             if (inputValue === '') {
                 alert("Please enter a task!");
                 return;
             }
 
-            const li = document.createElement("li");
-            li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "bg-light");
-            li.textContent = inputValue;
+            // Send the task to the backend
+            fetch(`/addtodo/${inputValue}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Failed to save the task.");
+                    }
+                    return response.json();
+                })
+                .then(result => {
+                    console.log("Task saved:", result);
 
-            const removeIcon = document.createElement("ion-icon");
-            removeIcon.setAttribute("name", "close-circle-outline");
-            removeIcon.style.cursor = "pointer";
-            removeIcon.classList.add("text-danger");
-            removeIcon.addEventListener("click", () => li.remove());
+                    // Create a new list item
+                    const li = document.createElement("li");
+                    li.classList.add("list-group-item", "d-flex", "justify-content-between", "align-items-center", "bg-light");
+                    li.textContent = inputValue;
 
-            li.appendChild(removeIcon);
-            document.getElementById("myUL").appendChild(li);
-            document.getElementById("todoinput").value = '';
+                    // Add remove icon
+                    const removeIcon = document.createElement("ion-icon");
+                    removeIcon.setAttribute("name", "close-circle-outline");
+                    removeIcon.style.cursor = "pointer";
+                    removeIcon.classList.add("text-danger");
+
+                    // Attach removal functionality
+                    removeIcon.addEventListener("click", () => li.remove());
+
+                    li.appendChild(removeIcon);
+                    const ul = document.getElementById("myUL");
+                    ul.appendChild(li);
+
+                    // Scroll to the bottom of the list
+                    ul.scrollTop = ul.scrollHeight;
+
+                    // Clear the input field
+                    document.getElementById("todoinput").value = '';
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Failed to add the task. Please try again.");
+                });
         }
-        window.addToDo = addToDo;
+
+        // Attach the function to the global scope
+        window.addtotodo = addtotodo;
     });
 </script>
 {% endblock %}
@@ -99,19 +129,19 @@
         border: 1px solid #EAECEE;
     }
 
-    /* Add scrollable container to the To-Do List */
+    /* Make the To-Do List Scrollable */
     #myUL {
         max-height: 300px; /* Set max height for the list */
         overflow-y: auto; /* Add vertical scroll if list exceeds max height */
         border: 1px solid #EAECEE; /* Optional: Add a border for clarity */
-        padding: 10px; /* Add some padding for better aesthetics */
+        padding: 10px; /* Optional padding for aesthetics */
         margin-top: 10px; /* Add space above the list */
     }
 </style>
 
 <div class="container my-5">
     <!-- Header Section -->
-    <div class="text-center mt-5">
+    <div class="text-center">
         <h1 class="header-title mt-5">Welcome to Your Digital PA System</h1>
         <p class="sub-title">Streamline your workflow with smart scheduling, task management, and reminders.</p>
     </div>
@@ -146,15 +176,15 @@
             </div>
         </div>
 
-        <!-- Manage Tasks -->
+        <!-- Manage Leaves -->
         <div class="col-md-4">
             <div class="card shadow-lg rounded-3 h-100">
                 <img src="https://images.pexels.com/photos/760710/pexels-photo-760710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" class="card-img-top rounded-top" alt="Manage Tasks">
                 <div class="card-body">
-                    <h5 class="card-title">Manage Tasks</h5>
-                    <p class="card-text">Stay on top of your to-do items and deadlines.</p>
+                    <h5 class="card-title">Manage Leaves</h5>
+                    <p class="card-text">Stay on top of your leave application and status.</p>
                     <a href="{% url 'leave' %}" class="btn btn-info px-4 py-2">
-                        <ion-icon name="clipboard-outline"></ion-icon> Tasks
+                        <ion-icon name="clipboard-outline"></ion-icon> Leaves
                     </a>
                 </div>
             </div>
@@ -191,7 +221,7 @@
             <h3 class="text-secondary fw-bold">To-Do List</h3>
             <div class="input-group mt-3">
                 <input type="text" id="todoinput" class="form-control" placeholder="Add a new task...">
-                <button class="btn btn-primary" type="button" onclick="addToDo()">Add</button>
+                <button class="btn btn-primary" type="button" onclick="addtotodo()">Add</button>
             </div>
             <ul id="myUL" class="list-group mt-3">
                 {% for todo in todos %}
