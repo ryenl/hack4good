@@ -73,8 +73,12 @@ def index(request):
     return render(request, "index.html")
 
 def profile(request):
-    # Fetch the EmployeeStatus object for the logged-in user
-    employee_status = employeestatus.objects.get(user=request.user)
+    try:
+        # Get the employee status for the logged-in user
+        employee_status = employeestatus.objects.get(user=request.user)
+    except employeestatus.DoesNotExist:
+        employee_status = None
+
     return render(request, 'profile.html', {'employee_status': employee_status})
 
 def home(request):

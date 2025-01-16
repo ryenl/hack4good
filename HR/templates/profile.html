@@ -111,7 +111,7 @@
     <div class="profile-details">
         <p class="detail"><span>Email:</span> {{ employee_status.user.email }}</p>
         <p class="detail"><span>Join Date:</span> {{ employee_status.user.date_joined }}</p>
-        <p class="detail"><span>Leaves Remaining:</span> {{ employee_status.leave_number }}</p>
+        <p class="detail"><span>Leaves Remaining:</span> {{ employee_status.leaves }}</p>
         <p class="detail"><span>Status:</span> {% if employee_status.user.is_active %} Online {% else %} Offline {% endif %}</p>
     </div>
 
