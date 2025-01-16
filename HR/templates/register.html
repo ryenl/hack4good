@@ -111,35 +111,42 @@
                     autofocus 
                     type="text" 
                     name="username" 
-                    placeholder="Username">
+                    placeholder="Enter your username" 
+                    required>
             </div>
             <div class="form-group">
                 <input 
                     class="form-control" 
                     type="email" 
                     name="email" 
-                    placeholder="Email Address">
+                    placeholder="Enter your email address" 
+                    required>
             </div>
             <div class="form-group">
                 <input 
                     class="form-control" 
                     type="password" 
                     name="password" 
-                    placeholder="Password">
+                    placeholder="Enter your password" 
+                    required>
             </div>
             <div class="form-group">
                 <input 
                     class="form-control" 
                     type="password" 
                     name="confirmation" 
-                    placeholder="Confirm Password">
+                    placeholder="Confirm your password" 
+                    required>
             </div>
             <div class="form-group">
+                <label for="profileimage" class="form-label">Upload Profile Picture</label>
                 <input 
                     type="file" 
                     id="profileimage" 
                     name="profileimage" 
-                    class="form-control">
+                    class="form-control" 
+                    accept="image/*" 
+                    required>
             </div>
             <button class="btn btn-primary" type="submit">Register</button>
         </form>
