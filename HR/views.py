@@ -72,6 +72,9 @@ def register(request):
 def index(request):
     return render(request, "index.html")
 
+def profile(request):
+    return render(request, 'profile.html')
+
 def home(request):
     user = request.user
     today = date.today()

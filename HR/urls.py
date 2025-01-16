@@ -21,5 +21,6 @@ urlpatterns = [
     path("getleaves",views.getleaves, name = "getleaves"),
     path("approve/<int:id>", views.approve, name="approve"),
     path("applyleave",views.applyleave, name = "applyleave"),
+    path('profile/', views.profile, name='profile'),
 
 ]
